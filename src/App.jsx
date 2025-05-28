@@ -1,17 +1,26 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { NavLink as Navlink } from "react-router-dom";
+import TaskList from "./pages/TaskList";
+import AddTask from "./pages/AddTask";
+import { GlobalProvider } from "./context/GlobalContext";
+
 
 function App() {
   return (
-    <BrowserRouter>
-      <routes>
-        <Route path="/" element={<TaskList></TaskList>}>
-        </Route>
-        <Route path="/add" element= {<AddTask/>}></Route>
-      </routes>
-    </BrowserRouter>
+    <GlobalProvider>
+      <BrowserRouter>
+        <nav>
+          <Navlink to="/">Lista Task </Navlink>
+          <Navlink to="/add">Aggiungi Task</Navlink>
+        </nav>
+        <Routes>
+          <Route path="/" element={<TaskList/>}>
+          </Route>  
+          <Route path="/add" element={<AddTask/>}>
+          </Route>      
+        </Routes>
+      </BrowserRouter>
+    </GlobalProvider>
   );
 }
 
